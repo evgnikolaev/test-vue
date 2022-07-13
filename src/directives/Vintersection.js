@@ -1,4 +1,6 @@
 export default {
+	//el - dom элемент
+	//binding - то что передали v-intersection="loadMorePosts"
 	mounted(el, binding) {
 		var options = {
 			rootMargin: '0px',
