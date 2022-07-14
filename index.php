@@ -167,17 +167,35 @@ vbase - короткая запись  для компонента
 		});
 
 
+			Для прокидывания в компонентах используем вместо   <my-input v-model="searchQuery"></my-input>
+			<my-input :modelValue="searchQuery" @update:modelValue="setSearchQuery"></my-input>
 
 
 
 
 
+7) Composition Api - для того, чтобы логические куски деражть рядом
+    Выносить за пределы компонента, для декомпозиции логики.
+
+    В компоненте используем:
+	setup(props) {
+ 	    const {posts, isPostLoading, totalPage} = usePosts(10);
+        ...
+    }
 
 
-
-
-
-
+	Данные при этом будут реактивные , если использовать ref
+	export function usePosts(limit) {
+		const posts = ref([]);
+		const fetching = () => {
+            ...
+		    posts.value = response.data;
+		 };
+		onMounted(fetching);  - здесь же можно использовать жизненный циклы компонента
+		return {
+			posts ...
+		};
+	}
 
 
 
